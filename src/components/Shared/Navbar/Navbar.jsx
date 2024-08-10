@@ -122,7 +122,7 @@ const Navbar = () => {
           ) : (
             <Link
               to={"/login"}
-              className="px-6 text-white py-2 bg-gradient-to-r from-[#F43F5E] to-[#f28499] rounded-sm hover:bg-[#ab3145] "
+              className="px-6 hover:scale-105 font-medium text-white py-2 bg-gradient-to-r from-[#F43F5E] to-[#f28499] rounded-sm hover:bg-[#ab3145] "
             >
               Login
             </Link>

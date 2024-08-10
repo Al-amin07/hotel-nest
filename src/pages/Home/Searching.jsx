@@ -1,8 +1,10 @@
 import { useSearchParams } from "react-router-dom";
 
 import PropTypes from 'prop-types'
-const Searching = ({handleSearch, setSearch}) => {
+
+const Searching = ({handleSearch, setSearch, search, setSearchText, searchText}) => {
   const [params, setParams] = useSearchParams();
+  
   const handleReset = () => {
     const newParams = new URLSearchParams(params)
     newParams.delete('category')
@@ -22,6 +24,8 @@ const Searching = ({handleSearch, setSearch}) => {
             name="search"
             placeholder="Enter Location"
             aria-label="Enter Job Title"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
           />
 
           <button
@@ -47,6 +51,7 @@ const Searching = ({handleSearch, setSearch}) => {
 Searching.propTypes = {
   handleSearch: PropTypes.func,
   setSearch: PropTypes.func,
+  search: PropTypes.string,
 }
 
 export default Searching;
