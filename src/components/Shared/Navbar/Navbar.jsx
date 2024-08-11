@@ -4,7 +4,7 @@ import useAuth from "../../../hooks/useAuth";
 
 import "./Nav.css";
 import useType from "../../../hooks/useType";
-
+import img from '../../../assets/images/logo2.png'
 const Navbar = () => {
   const [signInMethod] = useType();
   const { user, logOut } = useAuth();
@@ -14,6 +14,11 @@ const Navbar = () => {
       <li>
         <NavLink to={"/"} className="nav-link text-lg">
           Home
+        </NavLink>
+      </li>
+      <li>
+        <NavLink to={"/all-rooms"} className="nav-link text-lg">
+          All Rooms
         </NavLink>
       </li>
       <li>
@@ -67,8 +72,9 @@ const Navbar = () => {
 
           <Link
             to={"/"}
-            className="bg-gradient-to-r from-[#F43F5E] to-[#FFC1CC] bg-clip-text text-transparent text-3xl font-bold"
+            className="flex items-center hover:scale-105 gap-2 bg-gradient-to-r from-[#F43F5E] to-[#FF5400] bg-clip-text text-transparent text-2xl font-bold"
           >
+            <img className="h-10 w-10" src={img}/>
             Hotel Nest
           </Link>
         </div>

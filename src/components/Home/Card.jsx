@@ -11,7 +11,7 @@ const Card = ({ room }) => {
               w-full 
               relative 
               overflow-hidden 
-              rounded-xl
+              rounded-md
             '
         >
           <img
@@ -19,7 +19,7 @@ const Card = ({ room }) => {
                 object-cover 
                 h-full 
                 w-full 
-                group-hover:scale-110 
+                group-hover:scale-105 
                 transition
               '
             src={room?.image}
@@ -33,7 +33,7 @@ const Card = ({ room }) => {
             '
           ></div>
         </div>
-        <div className='font-semibold text-lg'>{room?.location}</div>
+        <div className='font-semibold text-xl'>{room?.location}</div>
         <div className='font-light text-neutral-500'>5 nights .</div>
         <div className='flex flex-row items-center gap-1'>
           <div className='font-semibold'>$ {room?.price}</div>

@@ -5,7 +5,9 @@ import Banner from './Banner'
 import Searching from './Searching'
 
 import NewItem from './NewItem'
-import AllRooms from './Rooms/AllRooms'
+import AllRooms from '../AllRoom/AllRooms'
+import EightRoom from './EightRoom'
+// import AllRooms from './Rooms/AllRooms'
 
 
 const Home = () => {
@@ -15,11 +17,10 @@ const Home = () => {
         <title>StayVista | Vacation Homes & Condo Rentals</title>
       </Helmet>
       <Banner />
-   
-      <Categories />
-      {/* <Searching /> */}
-      {/* <Rooms /> */}
-      <AllRooms />
+   <EightRoom />
+      {/* <Categories />
+      
+      <AllRooms /> */}
 
     {/* <Destination /> */}
     <NewItem />
