@@ -10,6 +10,8 @@ import AllRooms from '../pages/AllRoom/AllRooms'
 import Dashboard from '../pages/Dashboard/Dashboard'
 import Stastistics from '../pages/Dashboard/Common/Stastistics'
 import AddRoom from '../pages/Dashboard/Host/AddRoom'
+import MyListings from '../pages/Dashboard/Host/MyListings'
+import ManageUsers from '../pages/Dashboard/Admin/ManageUsers'
 
 export const router = createBrowserRouter([
   {
@@ -48,6 +50,14 @@ export const router = createBrowserRouter([
       {
         path: 'add-room',
         element: <AddRoom />
+      },
+      {
+        path: 'my-listings',
+        element: <MyListings />
+      },
+      {
+        path: 'manage-users',
+        element: <ManageUsers />
       }
     ]
   }

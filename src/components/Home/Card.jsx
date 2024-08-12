@@ -22,7 +22,7 @@ const Card = ({ room }) => {
                 group-hover:scale-105 
                 transition
               '
-            src={room?.image}
+            src={import.meta.env.VITE_API_URL + '/' + room?.image}
             alt='Room'
           />
           <div

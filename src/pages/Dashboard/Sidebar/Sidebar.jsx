@@ -10,14 +10,29 @@ import useAuth from "../../../hooks/useAuth";
 import { Link } from "react-router-dom";
 import { MdHomeWork } from "react-icons/md";
 import img from "../../../assets/images/logo2.png";
+import useRole from "../../../hooks/useRole";
+import GuestMenu from "./GuestMenu";
+import HostMenu from "./HostMenu";
+import AdminMenu from "./AdminMenu";
+import ToggleBtn from "./ToggleBtn";
+import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
 const Sidebar = () => {
   const { logOut } = useAuth();
+  const [role, isLoading] = useRole();
+  const [toggle, setToggle] = useState(true);
+  // console.log(role)
   const [isActive, setActive] = useState(false);
 
   // Sidebar Responsive Handler
   const handleToggle = () => {
     setActive(!isActive);
   };
+
+  const toggleHandler = (selected) => {
+    setToggle(selected);
+  };
+  if (isLoading) return <LoadingSpinner />;
+  // console.log(toggle)
   return (
     <>
       {/* Small Screen Navbar */}
@@ -66,7 +81,9 @@ const Sidebar = () => {
           {/* Nav Items */}
           <div className="flex flex-col justify-between flex-1 mt-6">
             {/* Conditional toggle button here.. */}
-
+            {role === "host" && (
+              <ToggleBtn toggleHandler={toggleHandler} toggle={toggle} />
+            )}
             {/*  Menu Items */}
             <nav>
               {/* Statistics */}
@@ -84,32 +101,15 @@ const Sidebar = () => {
                 <span className="mx-4 font-medium">Statistics</span>
               </NavLink>
 
-              {/* Add Room */}
-              <NavLink
-                to="add-room"
-                className={({ isActive }) =>
-                  `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                    isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
-                  }`
-                }
-              >
-                <BsFillHouseAddFill className="w-5 h-5" />
-
-                <span className="mx-4 font-medium">Add Room</span>
-              </NavLink>
-              {/* My Listing */}
-              <NavLink
-                to="my-listings"
-                className={({ isActive }) =>
-                  `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                    isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
-                  }`
-                }
-              >
-                <MdHomeWork className="w-5 h-5" />
-
-                <span className="mx-4 font-medium">My Listings</span>
-              </NavLink>
+              {role === "guest" && <GuestMenu />}
+              {role === "host" ? (
+                toggle ? (
+                  <HostMenu />
+                ) : (
+                  <GuestMenu />
+                )
+              ) : undefined}
+              {role === "admin" && <AdminMenu />}
             </nav>
           </div>
         </div>
