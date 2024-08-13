@@ -1,11 +1,10 @@
 import { Helmet } from "react-helmet-async";
+import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
-import useAuth from "../../../hooks/useAuth";
 import BookingDataRow from "../../../components/Table/BookingDataRow";
-import TableRowLoading from "../../../components/Table/TableRowLoading";
 
-const MyBookings = () => {
+const ManageBookings = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
   const {
@@ -15,17 +14,16 @@ const MyBookings = () => {
   } = useQuery({
     queryKey: ["my-bookings", user?.email],
     queryFn: async () => {
-      const { data } = await axiosSecure.get(`/my-bookings/${user?.email}`);
+      const { data } = await axiosSecure.get(`/manage-bookings/${user?.email}`);
       console.log(data);
       return data;
     },
   });
-  
-  if(isLoading) return <TableRowLoading />
+  console.log(bookings)
   return (
     <>
       <Helmet>
-        <title>My Bookings</title>
+        <title>Manage Bookings</title>
       </Helmet>
 
       <div className="container mx-auto px-4 sm:px-8">
@@ -45,7 +43,7 @@ const MyBookings = () => {
                       scope="col"
                       className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
                     >
-                      Info
+                      Guest Info
                     </th>
                     <th
                       scope="col"
@@ -75,11 +73,9 @@ const MyBookings = () => {
                 </thead>
                 <tbody>{
                     bookings.map(booking => (
-                        <BookingDataRow key={booking._id} booking={booking} refetch={refetch} />
+                        <BookingDataRow booking={booking} key={booking._id} refetch={refetch}/>
                     ))
-                    }
-
-                </tbody>
+                    }</tbody>
               </table>
             </div>
           </div>
@@ -89,4 +85,4 @@ const MyBookings = () => {
   );
 };
 
-export default MyBookings;
+export default ManageBookings;

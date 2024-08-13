@@ -5,10 +5,12 @@ import PropTypes from "prop-types";
 import toast from "react-hot-toast";
 import useAuth from "../../hooks/useAuth";
 import { ImSpinner9 } from "react-icons/im";
+import { useNavigate } from "react-router-dom";
 const Checkout = ({ bookingInfo, setIsOpen }) => {
   const [clientSecret, setClientSecret] = useState("");
   const stripe = useStripe();
   const { user } = useAuth();
+  const navigate = useNavigate()
   const [loading, setLoading] = useState(false);
   const axiosCommon = useAxiosCommon();
   const elements = useElements();
@@ -77,7 +79,8 @@ const Checkout = ({ bookingInfo, setIsOpen }) => {
         );
         console.log(data, updateData);
         if(data.insertedId){
-            toast.success('Room Booked Successfully!!!')
+            toast.success('Room Booked Successfully!!!');
+            navigate('/dashboard/my-bookings')
         }
       } catch (error) {
         toast.error(error.message);
