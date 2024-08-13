@@ -5,6 +5,8 @@ import Heading from "../../components/Shared/Heading";
 import useAxiosCommon from "../../hooks/useAxiosCommon";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
+import LoadingSpinner from "../../components/Shared/LoadingSpinner";
 
 const RoomDetails = () => {
   const { id } = useParams();
@@ -17,14 +19,16 @@ const RoomDetails = () => {
       return data;
     },
   });
+  
   console.log(id, room);
+  if(isLoading) return <LoadingSpinner />
   return (
     <Container>
       <Helmet>
         <title>{room?.title}</title>
       </Helmet>
       {room && (
-        <div className="max-w-screen-lg mx-auto">
+        <div className=" mx-auto">
           {/* Header */}
           <div className="flex flex-col gap-6">
             <div>
@@ -32,7 +36,7 @@ const RoomDetails = () => {
               <div className="w-full md:h-[60vh] overflow-hidden rounded-xl">
                 <img
                   className="object-cover w-full"
-                  src={import.meta.env.VITE_API_URL + '/' + room?.image}
+                  src={import.meta.env.VITE_API_URL + "/" + room?.image}
                   alt="header image"
                 />
               </div>
@@ -94,7 +98,7 @@ const RoomDetails = () => {
 
             <div className="md:col-span-3 order-first md:order-last mb-10">
               {/* RoomReservation */}
-              <RoomReservation room={room} />
+              <RoomReservation  room={room} />
             </div>
           </div>
         </div>

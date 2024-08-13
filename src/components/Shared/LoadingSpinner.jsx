@@ -11,6 +11,7 @@ const LoadingSpinner = ({ smallHeight }) => {
       items-center `}
     >
       <ScaleLoader size={100} color='red' />
+   
     </div>
   )
 }
