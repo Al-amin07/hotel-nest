@@ -14,7 +14,7 @@ const Home = () => {
   return (
     <div className=''>
       <Helmet>
-        <title>StayVista | Vacation Homes & Condo Rentals</title>
+        <title>Hotel Nest | Vacation Homes & Condo Rentals</title>
       </Helmet>
       <Banner />
    <EightRoom />
